@@ -22,12 +22,14 @@ namespace Biblioteka
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		ObservableCollection<Knjiga> listaKnjiga = new ObservableCollection<Knjiga>();
-		
+		public ObservableCollection<Knjiga> listaKnjiga = new ObservableCollection<Knjiga>();
+		public ObservableCollection<Clan> listaClanova = new ObservableCollection<Clan>();
+
 		public MainWindow()
 		{
 			InitializeComponent();
 			dgKnjige.ItemsSource = listaKnjiga;
+			dgClanovi.ItemsSource = listaClanova;
 		}
 
 		private void DodajKnjigu(object sender, RoutedEventArgs e)
@@ -54,6 +56,25 @@ namespace Biblioteka
 			if (dgKnjige.SelectedItem != null)
 			{
 				listaKnjiga.Remove(dgKnjige.SelectedItem as Knjiga);
+			}
+		}
+
+		private void BrisanjeClana(object sender, RoutedEventArgs e)
+		{
+			if (dgClanovi.SelectedItem != null)
+			{
+				listaClanova.Remove(dgClanovi.SelectedItem as Clan);
+			}
+		}
+
+		private void Pregled(object sender, RoutedEventArgs e)
+		{
+			if (dgClanovi.SelectedItem != null)
+			{
+				PregledKnjiga pk = new PregledKnjiga(listaKnjiga.ToList());
+				pk.Owner = this;
+				pk.DataContext = dgClanovi.SelectedItem;
+				pk.ShowDialog();
 			}
 		}
 	}

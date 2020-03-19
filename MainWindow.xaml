@@ -17,8 +17,20 @@
 				<DataGrid Name="dgKnjige" IsReadOnly="True" SelectionMode="Single" ColumnWidth="*"/>
 			</DockPanel>
 		</TabItem>
-		<TabItem Header="Druga">
-			
+		<TabItem Header="Clanovi">
+			<DockPanel>
+				<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" MinHeight="40">
+					<Button Content="Pregled knjiga" Click="Pregled"/>
+				</StackPanel>
+				<DataGrid Name="dgClanovi" SelectionMode="Single" ColumnWidth="*" AutoGenerateColumns="False">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Ime" Binding="{Binding Ime}"/>
+						<DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}"/>
+						<DataGridTextColumn Header="Broj knjiga" Binding="{Binding Knjige.Count}" IsReadOnly="True"/>
+					</DataGrid.Columns>
+					
+				</DataGrid>
+			</DockPanel>
 		</TabItem>
 	</TabControl>
 </Window>

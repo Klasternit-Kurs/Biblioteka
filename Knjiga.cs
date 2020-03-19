@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-	class Knjiga
+	public class Knjiga
 	{
 		public string Naziv { get; set; }
 		public int RaspolozivaKolicina { get; set; } = 1;
