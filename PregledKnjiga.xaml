@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka"
         mc:Ignorable="d"
-        Title="PregledKnjiga" Height="450" Width="800">
+        Title="PregledKnjiga" Height="450" Width="800" DataContextChanged="PromenaDT">
 	<StackPanel>
 	<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 		<Label Content="Clan: "/>
@@ -16,7 +16,12 @@
 			<TextBox Name="txtPretraga" Text="{Binding Pretraga}" Width="300"/>
 		</StackPanel>
 		<Button Content="Iznajmi" Click="Iznajmi"/>
-		<DataGrid Name="dgIznajmljeno" ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding Knjige}"/>
+		<DataGrid AutoGenerateColumns="False" Name="dgIznajmljeno" ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding Knjige}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Naziv" Binding="{Binding Key.Naziv}"/>
+				<DataGridTextColumn Header="Broj" Binding="{Binding Value}"/>
+			</DataGrid.Columns>
+		</DataGrid>
 	</StackPanel>
 
 </Window>

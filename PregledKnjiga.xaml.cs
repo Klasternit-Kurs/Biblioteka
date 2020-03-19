@@ -36,11 +36,34 @@ namespace Biblioteka
 			{
 				if (k.Naziv == Pretraga)
 				{
-					MessageBox.Show("Nasao :) ");
+					if (k.RaspolozivaKolicina > 0)
+					{
+						var clan = DataContext as Clan;
+						if (clan.Knjige.ContainsKey(k))
+						{
+							clan.Knjige[k]++;
+						}
+						else
+						{
+							clan.Knjige.Add(k, 1);
+						}
+						dgIznajmljeno.ItemsSource = null;
+						dgIznajmljeno.ItemsSource = (DataContext as Clan).Knjige;
+						k.RaspolozivaKolicina--;
+					} else
+					{
+						MessageBox.Show("Nema na stanju");
+					}
 					return;
 				}
 			}
 			MessageBox.Show("Nista :(");
+		}
+
+		private void PromenaDT(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			dgIznajmljeno.ItemsSource = null;
+			dgIznajmljeno.ItemsSource = (DataContext as Clan).Knjige;
 		}
 	}
 }
